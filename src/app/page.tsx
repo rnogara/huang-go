@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { api, HydrateClient } from "~/trpc/server";
+import Header from "./_components/layout/Header";
 
 export default async function Home() {
   const event = await api.events.getLatest();
