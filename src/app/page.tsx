@@ -1,5 +1,7 @@
 import { api, HydrateClient } from "~/trpc/server";
 import HomePage from "./_components/layout/HomePage";
+import About from "./_components/layout/About";
+import Header from "./_components/layout/Header";
 
 export default async function Home() {
   const event = await api.events.getLatest();
@@ -7,7 +9,9 @@ export default async function Home() {
   return (
     <HydrateClient>
       <main>
+        <Header />
         <HomePage />
+        <About />
         <section>
           <h1>Agenda</h1>
           {event ? (

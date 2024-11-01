@@ -2,16 +2,16 @@ import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <div className="relative">
-      <div className="absolute h-svh w-full top-0 left-0">
+    <section id="home" className="relative h-svh w-full overflow-hidden">
+      <div className="absolute top-0 left-0">
         <Image
           src="/images/bg-home.png"
-          width={3000}
-          height={800}
+          width={1920}
+          height={1080}
           alt="Imagem do Mt. Fuji breto e branco"
           className="object-cover h-full w-full -z-10"
         />
       </div>
-    </div>
+    </section>
   );
 }

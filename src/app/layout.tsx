@@ -3,7 +3,6 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 import { poiret } from "~/app/assets/font";
-import Header from "./_components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -15,10 +14,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${poiret.className} bg-black text-white`}>
+    <html lang="en" className={`${poiret.className}`}>
       <body>
         <TRPCReactProvider>
-          <Header />
           {children}
         </TRPCReactProvider>
       </body>
