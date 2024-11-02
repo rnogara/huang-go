@@ -19,7 +19,7 @@ export default function Header() {
   }, [isPageScrolled]);
 
   return (
-    <header className="relative z-30">
+    <header className="relative z-50">
       <div className={cn(
         "fixed top-0 left-0 w-full h-16 flex justify-between items-center px-8",
         { "bg-white/50 shadow-md": isPageScrolled },

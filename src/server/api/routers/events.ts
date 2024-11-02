@@ -8,13 +8,13 @@ export const eventsRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        name: z.string().min(3),
+        local: z.string().min(3),
         type: z.enum(["Aula", "Workshop", "Palestra", "Apresentação", "Torneio", "Exame de Ranking"]),
         date: z.string().date()
       }))
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(events).values({
-        name: input.name,
+        local: input.local,
         type: input.type,
         date: input.date,
       });
