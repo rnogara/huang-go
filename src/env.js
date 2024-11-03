@@ -63,6 +63,24 @@ export const env = createEnv({
           (str) => !str.includes("YOUR_POSTGRES_DATABASE_HERE"),
           "You forgot to change the default value"
         ),
+    RESEND_API_KEY:
+      z.string()
+        .refine(
+          (str) => !str.includes("YOUR_RESEND_KEY_HERE"),
+          "You forgot to change the default value"
+        ),
+    RESEND_TO_EMAIL:
+      z.string()
+        .refine(
+          (str) => !str.includes("YOUR_EMAIL_HERE"),
+          "You forgot to change the default value"
+        ),
+    RESEND_FROM_EMAIL:
+      z.string()
+        .refine(
+          (str) => !str.includes("YOUR_EMAIL_HERE"),
+          "You forgot to change the default value"
+        ),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -91,6 +109,9 @@ export const env = createEnv({
     POSTGRES_HOST: process.env.POSTGRES_HOST,
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
     POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_TO_EMAIL: process.env.RESEND_TO_EMAIL,
+    RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
     NODE_ENV: process.env.NODE_ENV,
   },
   /**

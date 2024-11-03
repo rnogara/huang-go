@@ -6,7 +6,7 @@ export default function Service() {
     <section id="service" className="h-fit w-full bg-black">
       <div className="h-full w-full flex justify-center items-center">
         <div className="w-full h-fit text-center text-white p-10 mb-10">
-          <Heading className="mb-10">Serviços</Heading>
+          <Heading className="my-8">Serviços</Heading>
           <div className="flex justify-evenly items-center w-full h-fit">
             <div className="flex flex-col justify-between gap-5">
               <p className="text-3xl">Aulas</p>

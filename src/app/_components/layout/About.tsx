@@ -15,12 +15,12 @@ export default function About() {
             className="object-cover h-full w-full"
           />
         </div>
-        <div className="h-24 bg-gradient-to-b from-black/90 to-transparent" />
-        <div className="w-[50%] h-fit bg-black/50 rounded-lg ml-8 my-7 p-10">
+        <div className="h-24 bg-gradient-to-b from-black to-transparent" />
+        <div className="w-[50%] h-fit bg-black/60 rounded-lg ml-8 my-7 p-10">
           <Heading className="text-white">Sobre</Heading>
           <div className="text-white text-2xl">{about.map((text, idx) => <p key={idx}>{text}</p>)}</div>
         </div>
-        <div className="h-24 bg-gradient-to-b from-transparent to-white/90" />
+        <div className="h-24 bg-gradient-to-b from-transparent to-white" />
       </div>
     </section>
   );

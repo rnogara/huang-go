@@ -12,8 +12,8 @@ export default function Schedule({ event }: { event?: Event }) {
   const futureEvent = Date.parse(event?.date ?? '') > Date.parse(new Date().toISOString());
 
   return (
-    <section id="schedule" className="h-fit w-full overflow-hidden">
-      <div className="relative h-svh w-full">
+    <section id="schedule" className="h-svh w-full overflow-hidden">
+      <div className="relative h-full w-full flex flex-col justify-between">
         <div className="absolute h-full w-full top-0 left-0 -z-10">
           <Image
             src="/images/bg-schedule.jpg"
@@ -23,8 +23,8 @@ export default function Schedule({ event }: { event?: Event }) {
             className="object-cover h-full w-full"
           />
         </div>
-        <div className="h-16 bg-gradient-to-b from-white/90 to-transparent" />
-        <div className="w-full h-fit text-right p-20 mb-10">
+        <div className="h-16 bg-gradient-to-b from-white to-transparent" />
+        <div className="w-full h-fit text-right px-20">
           <Heading className="mb-32">Agenda</Heading>
           <div className="text-[3rem]">
             {futureEvent && event ? (
@@ -36,6 +36,7 @@ export default function Schedule({ event }: { event?: Event }) {
             ) : <div><p>No momento</p><p>não há evento previsto</p></div>}
           </div>
         </div>
+        <div className="h-16 bg-gradient-to-b from-transparent to-white" />
       </div>
     </section>
   );
