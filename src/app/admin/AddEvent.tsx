@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { trpc } from '~/utils/trpc';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   local: z.string().min(5, { message: "Por favor, insira uma cidade e estado" })
@@ -27,6 +28,7 @@ interface FormData {
 type EventType = "Aula" | "Workshop" | "Palestra" | "Apresentação" | "Torneio" | "Exame de Ranking";
 
 export default function AddEvent() {
+  const router = useRouter();
   const [date, setDate] = useState<Date>();
   const [type, setType] = useState<string>("Aula");
   const { register, reset, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
@@ -36,8 +38,14 @@ export default function AddEvent() {
   const create = trpc.events.create.useMutation();
 
   const onSubmit = (data: FormData): void => {
+    if (!date || !type) {
+      toast.error("Por favor, preencha todos os campos");
+      return;
+    }
+
     try {
       create.mutate({ local: data.local, type: type as EventType, date: date ? format(date, "yyyy-MM-dd") : "" });
+      router.refresh();
       toast.success("Evento adicionado com sucesso!");
     } catch (error) {
       console.error("Failed to send data", error);

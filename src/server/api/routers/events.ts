@@ -29,7 +29,9 @@ export const eventsRouter = createTRPCRouter({
   }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
-    return ctx.db.query.events.findMany();
+    return ctx.db.query.events.findMany({
+      orderBy: (events, { asc }) => [asc(events.date)],
+    });
   }),
 
   delete: publicProcedure
@@ -43,5 +45,21 @@ export const eventsRouter = createTRPCRouter({
         throw new Error("Input is undefined");
       }
       await ctx.db.delete(events).where(eq(events.id, Number(input.id)));
+    }),
+
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        local: z.string().min(3),
+        type: z.enum(["Aula", "Workshop", "Palestra", "Apresentação", "Torneio", "Exame de Ranking"]),
+        date: z.string().date()
+      }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.update(events).set({
+        local: input.local,
+        type: input.type,
+        date: input.date,
+      }).where(eq(events.id, Number(input.id)));
     }),
 });
