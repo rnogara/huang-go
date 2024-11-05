@@ -1,25 +1,35 @@
-import { api, HydrateClient } from "~/trpc/server";
+'use client';
+import EventsList from "./EventsList";
+import { jost } from "../assets/font";
+import Heading from "../_components/ui/Heading";
+import AddEvent from "./AddEvent";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { httpBatchLink } from '@trpc/client';
+import React, { useState } from 'react';
+import SuperJSON from 'superjson';
+import { trpc } from '~/utils/trpc';
 
-export default async function admin() {
-  const events = await api.events.getAll();
-
+export default function Admin() {
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: 'http://localhost:3000/api/trpc',
+          transformer: SuperJSON,
+        }),
+      ],
+    }),
+  );
   return (
-    <HydrateClient>
-      <div>
-        <h1>Admin</h1>
-        <section>
-          {events.map((event) => (
-            <div key={event.id}>
-              <p>{event.name}</p>
-              <p>{event.type}</p>
-              <p>Dia: {event.date}</p>
-              <button onClick={() => api.events.delete({ id: event.id })}>
-                Deletar
-              </button>
-            </div>
-          ))}
-        </section>
-      </div>
-    </HydrateClient>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <div className={`${jost.className} bg-black h-svh w-full text-white p-6`}>
+          <Heading className="text-center text-[2.3rem] mb-10">Pagina do Administrador</Heading>
+          <AddEvent />
+          <EventsList />
+        </div>
+      </QueryClientProvider>
+    </trpc.Provider>
   );
 }
