@@ -1,25 +1,15 @@
-import { api, HydrateClient } from "~/trpc/server";
+'use client';
+import { useState } from "react";
+import { jost } from "../assets/font";
+import AdminPage from "./AdminPage";
+import Login from "./Login";
 
-export default async function admin() {
-  const events = await api.events.getAll();
-
+export default function Admin() {
+  const [isLoginDone, setIsLoginDone] = useState<boolean>(false);
   return (
-    <HydrateClient>
-      <div>
-        <h1>Admin</h1>
-        <section>
-          {events.map((event) => (
-            <div key={event.id}>
-              <p>{event.name}</p>
-              <p>{event.type}</p>
-              <p>Dia: {event.date}</p>
-              <button onClick={() => api.events.delete({ id: event.id })}>
-                Deletar
-              </button>
-            </div>
-          ))}
-        </section>
-      </div>
-    </HydrateClient>
+    <main className={`${jost.className} bg-black h-svh w-full text-white p-6`}>
+      {isLoginDone ? <AdminPage /> : <Login setIsLoginDone={setIsLoginDone} />}
+    </main>
   );
 }
+
