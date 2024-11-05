@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import ContactForm from "./ContactForm";
 import Video from "./Video"
 
@@ -8,6 +9,7 @@ export default function Conatct() {
         <Video />
         <div className="h-24 bg-gradient-to-b from-white to-transparent" />
         <ContactForm />
+        <Footer />
       </div>
     </section>
   );
