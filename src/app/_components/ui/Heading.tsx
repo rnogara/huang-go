@@ -9,7 +9,7 @@ type Props = {
 function Heading({ className, children }: Props) {
   return (
     <h1 className={cn(
-      `${sharp.className} text-[5rem]`,
+      `${sharp.className} text-[3rem] md:text-[5rem]`,
       className
     )}>
       {children}

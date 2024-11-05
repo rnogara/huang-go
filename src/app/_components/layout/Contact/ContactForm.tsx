@@ -46,10 +46,10 @@ export default function ContactForm() {
 
   return (
     <div className="relative h-full w-full flex items-center justify-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="h-fit w-[40%] flex flex-col justify-evenly bg-black/90 rounded-2xl p-10 shadow-sm shadow-pink-200 gap-10">
-        <h2 className="text-[3rem] text-pink-200 text-center">Entre em contato</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="h-fit w-[90%] sm:w-[70%] xl:w-[40%] flex flex-col justify-evenly bg-black/90 rounded-2xl p-10 shadow-sm shadow-pink-200 gap-10">
+        <h2 className="text-3xl text-nowrap md:text-[2.3rem] lg:text-[3rem] text-pink-200 text-center">Entre em contato</h2>
         <div className="flex flex-col gap-5">
-          <div className="flex gap-5">
+          <div className="flex flex-col lg:flex-row gap-5">
             <div className="w-full">
               <Input {...register('firstName')} type="text" placeholder="Nome" className="bg-transparent text-white" />
               {errors.firstName && <p className={`${jost.className} font-bold text-red-400 text-sm pt-1 pl-1`}>{errors.firstName.message}</p>}
@@ -60,10 +60,10 @@ export default function ContactForm() {
             </div>
           </div>
           <div>
-            <textarea {...register('message')} placeholder="Sua mensagem" className={`${jost.className} flex h-20 w-full font-bold rounded-md border border-input bg-transparent px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-white`} />
+            <textarea {...register('message')} placeholder="Sua mensagem" className={`${jost.className} flex h-32 md:h-28 lg:h-20 w-full font-bold rounded-md border border-input bg-transparent px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-white`} />
             {errors.message && <p className={`${jost.className} font-bold text-red-400 text-sm pt-1 pl-1`}>{errors.message.message}</p>}
           </div>
-          <Button type="submit" className={`${jost.className} w-[30%] bg-pink-200/40 text-black hover:bg-pink-200/60 mx-auto text-xl`}>Enviar</Button>
+          <Button type="submit" className={`${jost.className} w-[50%] lg:w-[30%] bg-pink-200/40 text-black hover:bg-pink-200/60 mx-auto text-xl`}>Enviar</Button>
         </div>
       </form>
       <ToastContainer
