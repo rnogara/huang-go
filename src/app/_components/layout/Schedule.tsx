@@ -20,13 +20,13 @@ export default function Schedule({ event }: { event?: Event }) {
             alt="Imagem de uma floresta de bambu e algumas pedras empilhadas na frente"
             width={1920}
             height={1080}
-            className="object-cover h-full w-full"
+            className="object-cover object-left-top md:object-center h-full w-full"
           />
         </div>
         <div className="h-16 bg-gradient-to-b from-white to-transparent" />
-        <div className="w-full h-fit text-right px-20">
-          <Heading className="mb-32">Agenda</Heading>
-          <div className="text-[3rem]">
+        <div className="rounded-xl p-4 ml-auto mr-4 md:ml-0 md:mr-0 mt-10 bg-white/60 w-fit md:bg-transparent md:w-full h-fit md:mt-0 text-right md:px-20">
+          <Heading className="mb-10 md:mb-32">Agenda</Heading>
+          <div className="text-nowrap text-[1.8rem] sm:text-[2.3rem] md:text-[3rem]">
             {futureEvent && event ? (
               <div>
                 <p>{event.type}</p>

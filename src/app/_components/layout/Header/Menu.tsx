@@ -3,12 +3,12 @@ import { Button } from "../../ui/button";
 
 export default function Menu() {
   return (
-    <div>
-      <Button variant="link" asChild><Link href="#home" className="text-[1.8rem]">Home</Link></Button>
-      <Button variant="link" asChild><Link href="#service" className="text-[1.8rem]">Serviços</Link></Button>
-      <Button variant="link" asChild><Link href="#about" className="text-[1.8rem]">Sobre</Link></Button>
-      <Button variant="link" asChild><Link href="#schedule" className="text-[1.8rem]">Agenda</Link></Button>
-      <Button variant="link" asChild><Link href="#contact" className="text-[1.8rem]">Contato</Link></Button>
+    <div className="hidden md:block">
+      <Button variant="link" asChild className="text-xl lg:text-[1.5rem]"><Link href="#home">Home</Link></Button>
+      <Button variant="link" asChild className="text-xl lg:text-[1.5rem]"><Link href="#service">Serviços</Link></Button>
+      <Button variant="link" asChild className="text-xl lg:text-[1.5rem]"><Link href="#about">Sobre</Link></Button>
+      <Button variant="link" asChild className="text-xl lg:text-[1.5rem]"><Link href="#schedule">Agenda</Link></Button>
+      <Button variant="link" asChild className="text-xl lg:text-[1.5rem]"><Link href="#contact">Contato</Link></Button>
     </div>
   );
 }

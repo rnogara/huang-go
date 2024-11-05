@@ -10,7 +10,7 @@ export default function HomePage() {
             width={1920}
             height={1080}
             alt="Imagem do Mt. Fuji breto e branco"
-            className="object-cover h-full w-full"
+            className="object-cover object-right-bottom md:object-center h-full w-full"
           />
         </div>
       </div>
