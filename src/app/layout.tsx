@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Huang Go",
     description: "Sempre quis aprender Go? Aula online ou presencial, ministradas pelo professor Tony Huang. Lições de forma personalizada e única para o seu estilo!",
-    images: [{ url: "/og.jpg" }],
+    images: [{ url: "/images/og.jpg" }],
   },
 };
 
