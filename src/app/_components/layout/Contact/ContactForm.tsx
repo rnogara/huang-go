@@ -60,7 +60,7 @@ export default function ContactForm() {
             </div>
           </div>
           <div>
-            <textarea {...register('message')} placeholder="Se possível incluir detalhes como o seu nível, frequência de aula desejada, tipo do serviço, etc" className={`${jost.className} flex h-36 md:h-28 lg:h-20 w-full font-bold rounded-md border border-input bg-transparent px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-white`} />
+            <textarea {...register('message')} placeholder="Se possível incluir detalhes como o seu nível, frequência de aula desejada, tipo do serviço..." className={`${jost.className} flex h-36 md:h-28 lg:h-20 w-full font-bold rounded-md border border-input bg-transparent px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-white`} />
             {errors.message && <p className={`${jost.className} font-bold text-red-400 text-sm pt-1 pl-1`}>{errors.message.message}</p>}
           </div>
           <Button type="submit" className={`${jost.className} w-[50%] lg:w-[30%] bg-pink-200/40 text-black hover:bg-pink-200/60 mx-auto text-xl`}>Enviar</Button>
