@@ -6,11 +6,11 @@ import { poiret } from "~/app/assets/font";
 
 export const metadata: Metadata = {
   title: "Huang Go",
-  description: "Go é famoso jogo de tabuleiro conhecido também por Weiqi ou Baduk. Agende já sua aula, fique de olho em eventos ou participe de torneios e exames de ranking com o melhor Professor de Go do Brasil!",
+  description: "Sempre quis aprender Go? Aula online ou presencial, ministradas pelo professor Tony Huang. Lições de forma personalizada e única para o seu estilo!",
   icons: [{ rel: "icon", url: "/favicon.png" }],
   openGraph: {
     title: "Huang Go",
-    description: "Go é famoso jogo de tabuleiro conhecido também por Weiqi ou Baduk. Agende já sua aula, fique de olho em eventos ou participe de torneios e exames de ranking com o melhor Professor de Go do Brasil!",
+    description: "Sempre quis aprender Go? Aula online ou presencial, ministradas pelo professor Tony Huang. Lições de forma personalizada e única para o seu estilo!",
     images: [{ url: "/og.jpg" }],
   },
 };
