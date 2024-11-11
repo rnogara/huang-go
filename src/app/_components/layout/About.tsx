@@ -9,8 +9,8 @@ import { useState } from "react";
 export default function About() {
   const [readMore, setReadMore] = useState<boolean>(false);
   return (
-    <section id="about" className="h-fit w-full">
-      <div className="relative h-fit w-full">
+    <section id="about" className="h-svh w-full">
+      <div className="relative h-full w-full flex flex-col justify-between">
         <div className="absolute h-full w-full top-0 left-0 -z-10">
           <Image
             src="/images/bg-about.jpg"
@@ -21,7 +21,7 @@ export default function About() {
           />
         </div>
         <div className="h-24 bg-gradient-to-b from-black to-transparent" />
-        <div className="mx-auto p-5 w-[90%] lg:w-[50%] h-fit bg-black/60 rounded-lg md:ml-8 md:my-7 md:p-10">
+        <div className="mx-auto p-5 w-[90%] lg:w-[50%] h-fit bg-black/60 rounded-lg md:ml-10 md:my-7 md:p-10">
           <Heading className="text-white">Sobre</Heading>
           <div className="text-white text-2xl flex flex-col items-start">
             {about.map((text, idx) => <p key={idx} className={cn(

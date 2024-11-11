@@ -11,10 +11,10 @@ export default function Service() {
             <div className="flex flex-col justify-between gap-5">
               <p className="text-2xl md:text-3xl">Aulas</p>
               <p className="text-2xl md:text-3xl">Workshops</p>
-              <p className="text-2xl md:text-3xl">Palestra</p>
-              <p className="text-2xl md:text-3xl">Apresentação</p>
-              <p className="text-2xl md:text-3xl">Torneio</p>
-              <p className="text-2xl md:text-3xl">Exame de Ranking</p>
+              <p className="text-2xl md:text-3xl">Palestras</p>
+              <p className="text-2xl md:text-3xl">Apresentações</p>
+              <p className="text-2xl md:text-3xl">Torneios</p>
+              <p className="text-2xl md:text-3xl">Exames de Ranking</p>
             </div>
             <Image
               src="/images/board.jpg"
