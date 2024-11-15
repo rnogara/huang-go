@@ -24,7 +24,7 @@ export default function AdminPage() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <div className={`${jost.className} bg-black h-svh w-full text-white p-6`}>
+        <div className={`${jost.className} bg-black h-fit w-full text-white p-6`}>
           <Heading className="text-center text-[2.3rem] mb-10">Pagina do Administrador</Heading>
           <AddEvent />
           <EventsList />

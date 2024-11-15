@@ -23,7 +23,7 @@ export default function EventsList() {
         <TableHeader>
           <TableRow>
             <TableHead>Local</TableHead>
-            <TableHead>Tipo</TableHead>
+            <TableHead>Tipos</TableHead>
             <TableHead>Data</TableHead>
             <TableHead>Deletar</TableHead>
             {/* <TableHead>Editar</TableHead> */}
@@ -33,7 +33,7 @@ export default function EventsList() {
           {data?.map((event) => (
             <TableRow key={event.id}>
               <TableCell>{event.local}</TableCell>
-              <TableCell>{event.type}</TableCell>
+              <TableCell>{event.types.filter((type) => type != "]").map((type, idx) => <p key={idx}>{type}</p>)}</TableCell>
               <TableCell>{format(event.date, "dd/MM/yyyy")}</TableCell>
               <TableCell>
                 <Button variant="ghost" onClick={() => handleDelete(event.id)}>

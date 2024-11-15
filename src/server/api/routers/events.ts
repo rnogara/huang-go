@@ -9,24 +9,16 @@ export const eventsRouter = createTRPCRouter({
     .input(
       z.object({
         local: z.string().min(3),
-        type: z.enum(["Aula", "Workshop", "Palestra", "Apresentação", "Torneio", "Exame de Ranking"]),
+        types: z.string().array().min(1).refine((types) => new Set(types).size === types.length),
         date: z.string().date()
       }))
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(events).values({
         local: input.local,
-        type: input.type,
+        types: input.types,
         date: input.date,
       });
     }),
-
-  getLatest: publicProcedure.query(async ({ ctx }) => {
-    const event = await ctx.db.query.events.findFirst({
-      orderBy: (events, { desc }) => [desc(events.date)],
-    });
-
-    return event ?? null;
-  }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
     return ctx.db.query.events.findMany({
@@ -52,13 +44,13 @@ export const eventsRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         local: z.string().min(3),
-        type: z.enum(["Aula", "Workshop", "Palestra", "Apresentação", "Torneio", "Exame de Ranking"]),
+        types: z.string().array().min(1).refine((types) => new Set(types).size === types.length),
         date: z.string().date()
       }))
     .mutation(async ({ ctx, input }) => {
       await ctx.db.update(events).set({
         local: input.local,
-        type: input.type,
+        types: input.types,
         date: input.date,
       }).where(eq(events.id, Number(input.id)));
     }),
