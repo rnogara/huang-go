@@ -38,9 +38,9 @@ export default function Login({ setIsLoginDone }: { setIsLoginDone: (value: bool
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center">
       <ToastContainer />
-      <Heading className="text-[2.5rem]">Admin Login</Heading>
+      <Heading className="text-[2.5rem] mt-[13%]">Admin Login</Heading>
       <form onSubmit={handleSubmit(onSubmit)} className="w-[30%] flex flex-col gap-4">
         <div>
           <Input {...register("email")} type="email" placeholder="Email" className="bg-transparent" />

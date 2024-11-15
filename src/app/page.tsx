@@ -7,7 +7,7 @@ import Service from "./_components/layout/Service";
 import Conatct from "./_components/layout/Contact";
 
 export default async function Home() {
-  const event = await api.events.getLatest() ?? undefined;
+  const events = await api.events.getAll();
 
   return (
     <HydrateClient>
@@ -16,7 +16,7 @@ export default async function Home() {
         <HomePage />
         <Service />
         <About />
-        <Schedule event={event} />
+        <Schedule events={events} />
         <Conatct />
       </main>
     </HydrateClient>

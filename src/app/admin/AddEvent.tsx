@@ -8,7 +8,6 @@ import { Calendar } from "../_components/ui/calendar";
 import { cn } from "~/lib/utils";
 import { useState } from "react";
 import { format } from "date-fns";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../_components/ui/select";
 import { jost } from "../assets/font";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { trpc } from '~/utils/trpc';
 import { useRouter } from 'next/navigation';
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../_components/ui/dropdown-menu";
 
 const formSchema = z.object({
   local: z.string().min(5, { message: "Por favor, insira uma cidade e estado" })
@@ -30,21 +30,30 @@ type EventType = "Aula" | "Workshop" | "Palestra" | "Apresentação" | "Torneio"
 export default function AddEvent() {
   const router = useRouter();
   const [date, setDate] = useState<Date>();
-  const [type, setType] = useState<string>("Aula");
+  const [types, setTypes] = useState<string[]>([]);
   const { register, reset, handleSubmit, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     mode: "onChange"
   });
   const create = trpc.events.create.useMutation();
 
+  const handleTypesSelect = (type: string) => {
+    if (types.includes(type)) {
+      const newTypesArray = types.filter((t) => t !== type)
+      setTypes(newTypesArray);
+      return;
+    }
+    setTypes([...types, type]);
+  };
+
   const onSubmit = (data: FormData): void => {
-    if (!date || !type) {
+    if (!date || !types) {
       toast.error("Por favor, preencha todos os campos");
       return;
     }
 
     try {
-      create.mutate({ local: data.local, type: type as EventType, date: date ? format(date, "yyyy-MM-dd") : "" });
+      create.mutate({ local: data.local, types: types as EventType[], date: date ? format(date, "yyyy-MM-dd") : "" });
       router.refresh();
       toast.success("Evento adicionado com sucesso!");
     } catch (error) {
@@ -62,19 +71,19 @@ export default function AddEvent() {
           <Input {...register("local")} type="text" className="bg-transparent text-white text-xl min-w-60" />
           {errors.local && <p className="font-bold text-red-400 text-sm pt-1 pl-1">{errors.local.message}</p>}
         </div>
-        <Select>
-          <SelectTrigger className="bg-transparent text-xl">
-            <SelectValue className="w-[280px] justify-start text-left font-normal" placeholder="Selecione um tipo" />
-          </SelectTrigger>
-          <SelectContent className={`${jost.className} bg-black text-white`}>
-            <SelectItem onClick={() => setType("Aula")} className="text-xl" value="Aula">Aula</SelectItem>
-            <SelectItem onClick={() => setType("Workshop")} className="text-xl" value="Workshop">Workshop</SelectItem>
-            <SelectItem onClick={() => setType("Palestra")} className="text-xl" value="Palestra">Palestra</SelectItem>
-            <SelectItem onClick={() => setType("Apresentação")} className="text-xl" value="Apresentação">Apresentação</SelectItem>
-            <SelectItem onClick={() => setType("Torneio")} className="text-xl" value="Torneio">Torneio</SelectItem>
-            <SelectItem onClick={() => setType("Exame de Ranking")} className="text-xl" value="Exame de Ranking">Exame de Ranking</SelectItem>
-          </SelectContent>
-        </Select>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="bg-transparent text-xl hover:bg-white hover:text-black rounded-md border border-input" asChild>
+            <Button className="w-[280px] justify-start text-left font-normal">Selecione o(s) tipo(s)</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className={`${jost.className} bg-black text-white`}>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Aula")} className="text-xl">{types.includes("Aula") ? "✔ Aula" : "Aula"}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Workshop")} className="text-xl">{types.includes("Workshop") ? "✔ Workshop" : "Workshop"}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Palestra")} className="text-xl">{types.includes("Palestra") ? "✔ Palestra" : "Palestra"}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Apresentação")} className="text-xl">{types.includes("Apresentação") ? "✔ Apresentação" : "Apresentação"}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Torneio")} className="text-xl">{types.includes("Torneio") ? "✔ Torneio" : "Torneio"}</DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem onClick={() => handleTypesSelect("Exame de Ranking")} className="text-xl">{types.includes("Exame de Ranking") ? "✔ Exame de Ranking" : "Exame de Ranking"}</DropdownMenuCheckboxItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Popover>
           <PopoverTrigger asChild>
             <Button
