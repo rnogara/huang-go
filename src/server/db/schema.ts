@@ -19,12 +19,12 @@ export const events = createTable(
   {
     id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
     local: varchar("local", { length: 256 }).notNull(),
-    type: varchar("type", { length: 100 }).notNull(),
+    types: varchar("types", { length: 500 }).array().notNull(),
     date: date("date", { mode: "string" }).notNull(),
   },
   (example) => ({
     localIndex: index("local_idx").on(example.local),
-    typeIndex: index("type_idx").on(example.type),
+    typesIndex: index("types_idx").on(example.types),
     dateIndex: index("date_idx").on(example.date),
   })
 );

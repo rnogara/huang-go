@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Heading from "../ui/Heading";
+import { jost } from "~/app/assets/font";
 
 type Event = {
   local: string;
-  type: string;
+  types: string[];
   date: string;
 }
 
-export default function Schedule({ event }: { event?: Event }) {
-  const eventDate = event ? new Date(event.date).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) : '';
-  const futureEvent = Date.parse(event?.date ?? '') > Date.parse(new Date().toISOString());
+export default function Schedule({ events }: { events?: Event[] }) {
+  const thisMonth = new Date().getMonth();
+  const futureEvents = events?.filter((event) => new Date(event.date).getMonth() === thisMonth);
 
   return (
     <section id="schedule" className="h-svh w-full overflow-hidden">
@@ -24,16 +25,14 @@ export default function Schedule({ event }: { event?: Event }) {
           />
         </div>
         <div className="h-16 bg-gradient-to-b from-white to-transparent" />
-        <div className="rounded-xl p-4 ml-auto mr-4 md:ml-0 md:mr-0 mt-10 bg-white/60 w-fit md:bg-transparent md:w-full h-fit md:mt-0 text-right md:px-20">
-          <Heading className="mb-10 md:mb-32">Agenda</Heading>
-          <div className="text-nowrap text-[1.8rem] sm:text-[2.3rem] md:text-[3rem]">
-            {futureEvent && event ? (
-              <div>
-                <p>{event.type}</p>
-                <p>{eventDate}</p>
+        <div className="rounded-xl p-4 ml-auto mr-4 md:ml-0 md:mr-0 mt-10 bg-white/70 w-fit md:bg-transparent md:w-full h-fit md:mt-0 text-right md:px-20 flex flex-col items-end">
+          <Heading className="mb-10">Agenda</Heading>
+          <div className={`${jost.className} text-nowrap text-[1.8rem] lg:text-[1.95rem] flex flex-col gap-3 w-fit font-bold`}>
+            {futureEvents && events ? futureEvents.map((event, idx) =>
+              <div key={idx} className="border-b border-black pb-2 w-full first:border-t">
+                <p>{new Date(event.date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</p>
                 <p>{event.local}</p>
-              </div>
-            ) : <div><p>No momento</p><p>não há evento previsto</p></div>}
+              </div>) : <div><p>No momento</p><p>não há evento previsto</p></div>}
           </div>
         </div>
         <div className="h-16 bg-gradient-to-b from-transparent to-white" />

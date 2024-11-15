@@ -7,7 +7,7 @@ import Login from "./Login";
 export default function Admin() {
   const [isLoginDone, setIsLoginDone] = useState<boolean>(false);
   return (
-    <main className={`${jost.className} bg-black h-svh w-full text-white p-6`}>
+    <main className={`${jost.className} h-full w-full text-white p-6`}>
       {isLoginDone ? <AdminPage /> : <Login setIsLoginDone={setIsLoginDone} />}
     </main>
   );

@@ -10,7 +10,6 @@ export default function Header() {
   useEffect(() => {
     const checkScroll = () => {
       setIsPageScrolled(window.scrollY !== 0);
-      console.log(window.scrollY);
     };
     window.addEventListener("scroll", checkScroll);
 
