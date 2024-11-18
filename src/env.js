@@ -7,6 +7,12 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
+    VERCEL_URL:
+      z.string()
+        .refine(
+          (str) => !str.includes("YOUR_VERCEL_URL_HERE"),
+          "You forgot to change the default value"
+        ),
     POSTGRES_URL:
       z.string()
         .url()
@@ -96,6 +102,7 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    VERCEL_URL: process.env.VERCEL_URL,
     POSTGRES_URL: process.env.POSTGRES_URL,
     POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
     POSTGRES_URL_NO_SSL: process.env.POSTGRES_URL_NO_SSL,
