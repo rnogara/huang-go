@@ -24,6 +24,7 @@ export default function RootLayout({
       <body className="bg-black">
         <TRPCReactProvider>
           {children}
+          <Analytics />
         </TRPCReactProvider>
       </body>
     </html>
