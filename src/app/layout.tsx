@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 import { poiret } from "~/app/assets/font";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Huang Go - Aulas de Go online e presencial em todo o Brasil",
