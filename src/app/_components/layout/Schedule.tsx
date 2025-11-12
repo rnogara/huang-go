@@ -10,7 +10,8 @@ type Event = {
 
 export default function Schedule({ events }: { events?: Event[] }) {
   const thisMonth = new Date().getMonth();
-  const futureEvents = events?.filter((event) => new Date(event.date).getMonth() === thisMonth);
+  const thisYear = new Date().getFullYear();
+  const futureEvents = events?.filter((event) => new Date(event.date).getMonth() === thisMonth && new Date(event.date).getFullYear() === thisYear);
 
   return (
     <section id="schedule" className="h-svh w-full overflow-hidden">
